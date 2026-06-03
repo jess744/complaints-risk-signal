@@ -1,9 +1,24 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Complaints Risk Signal",
+  "schemaVersion": 1,
+  "description": "Monthly complaints risk signal for Group Risk Register — 5 categories with RAG from Notion Escalated Customer Complaints register. NK/Spirit cluster tracked separately.",
+  "mcpTools": [
+    "mcp__028540ec-1ce0-4aea-ae0b-c6e33bd3950c__notion-search",
+    "mcp__028540ec-1ce0-4aea-ae0b-c6e33bd3950c__notion-fetch"
+  ],
+  "mcpServerNames": [
+    "Notion",
+    "Notion"
+  ]
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Complaints Risk Signal — May 2026</title>
+<title>Complaints Risk Signal — May 2026 (Final)</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 <style>
 :root { color-scheme: light; }
@@ -59,15 +74,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
 .tp-market-label { font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; }
 .tp-market-val { font-size: 18px; font-weight: 700; color: #111827; line-height: 1.2; }
 .tp-market-sub { font-size: 11px; color: #6b7280; }
-.cluster-box { background: white; border-radius: 8px; border: 1px solid #fed7aa; border-left: 4px solid #f97316; padding: 16px 20px; }
+.cluster-box { background: white; border-radius: 8px; border: 1px solid #d1d5db; border-left: 4px solid #d97706; padding: 16px 20px; }
 .cluster-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .cluster-title { font-weight: 700; font-size: 14px; }
-.cluster-badge { padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.cluster-badge { padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
 .cluster-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
 .cluster-stat { background: #f9fafb; border-radius: 6px; padding: 10px 14px; }
 .cs-val { font-size: 20px; font-weight: 700; color: #111827; line-height: 1; }
 .cs-val.warn { color: #d97706; }
 .cs-val.red { color: #dc2626; }
+.cs-val.muted { color: #6b7280; }
 .cs-lbl { font-size: 11px; color: #6b7280; margin-top: 3px; }
 .cluster-desc { font-size: 13px; color: #6b7280; line-height: 1.65; }
 .threshold-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 18px; font-size: 12px; color: #6b7280; line-height: 1.8; }
@@ -75,7 +91,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
 .rag-key { display: inline-flex; align-items: center; gap: 5px; margin-right: 14px; font-size: 12px; }
 .rag-key-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .info-note { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #1e40af; margin-bottom: 20px; display: flex; gap: 8px; }
-.event-note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #c2410c; margin-bottom: 20px; display: flex; gap: 8px; }
+.event-note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #92400e; margin-bottom: 20px; display: flex; gap: 8px; }
 </style>
 </head>
 <body>
@@ -90,56 +106,57 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
   </div>
   <div class="header-right">
     <span class="month-badge">May 2026 (Final)</span>
-    <span class="data-freshness">Refreshed 2 Jun 2026</span>
+    <span class="data-freshness">Refreshed 3 Jun 2026</span>
   </div>
 </div>
 
 <div class="content">
 
   <div class="event-note">
-    <span>⚠</span>
-    <span><strong>Event flag:</strong> Spirit Airlines (NK) ceased operations May 2026. This is driving the Red RAG on Policy &amp; Product (+46%) and Dispute Risk (+102%). Excluding NK, underlying trends are mixed — Policy &amp; Product was already trending up prior to the event. Georg (Fintech) tracking chargeback exposure separately via Stripe.</span>
+    <span>⚠️</span>
+    <span><strong>NK event — May final:</strong> Spirit Airlines (NK) liquidation May 2026 drove an estimated ~85 escalations that inflated May headline numbers across all three Red categories — Total Escalations (+55.6%), Dispute Risk (+101.9%), and Policy &amp; Product (+46.4%). Excluding NK, all three categories were approximately flat vs April and would individually read Green. The Red overall RAG is event-driven. Georg/Fintech owns NK chargeback resolution via Stripe. No new NK cases detected Jun 1–3 (27 records sampled). June baselines use NK-excluded May standards: Dispute Risk 52, Policy &amp; Product ~69, Escalations ~164.</span>
   </div>
 
   <div class="info-note">
     <span>ℹ</span>
-    <span>Source: Ops Leadership Dashboard (Notion) — charts read weekly via Claude in Chrome. Reputational: Trustpilot KPI Reporting DB (weekly avg) + public Trustpilot pages. RAG compares current month actual vs prior month actual. Auto-refreshes weekly (Monday) via Claude Cowork.</span>
+    <span>Source: Notion Ops Leadership Dashboard — monthly chart views for May 2026 (all figures final, no projections). Reputational: weekly star rating from Notion PLT Trust Insights + Trustpilot public pages fetched 3 Jun 2026 (AU 4,296 reviews; US 6,061 reviews). Auto-refreshes monthly (5th of month) via Claude Cowork.</span>
   </div>
 
   <!-- Volume summary -->
   <div class="volume-bar">
     <div class="vol-item">
-      <div class="vol-label">Total Escalations (May)</div>
-      <div class="vol-value">249</div>
-      <div class="vol-sub bad">↑ +56% vs April (160)</div>
+      <div class="vol-label">Total Escalations (May Final)</div>
+      <div class="vol-value" style="color:#dc2626">249</div>
+      <div class="vol-sub bad">↑ +55.6% vs Apr 160 (Red)</div>
     </div>
     <div class="vol-item">
-      <div class="vol-label">Policy &amp; Product</div>
+      <div class="vol-label">Dispute Risk (May Final)</div>
+      <div class="vol-value" style="color:#dc2626">105</div>
+      <div class="vol-sub bad">↑ +101.9% vs Apr 52 (Red · NK ~53)</div>
+    </div>
+    <div class="vol-item">
+      <div class="vol-label">Policy &amp; Product (May Final)</div>
       <div class="vol-value" style="color:#dc2626">101</div>
-      <div class="vol-sub bad">↑ +46% vs April (69)</div>
-    </div>
-    <div class="vol-item">
-      <div class="vol-label">Service Errors</div>
-      <div class="vol-value" style="color:#16a34a">16</div>
-      <div class="vol-sub good">↓ −20% vs April (20)</div>
+      <div class="vol-sub bad">↑ +46.4% vs Apr 69 (Red · NK ~32)</div>
     </div>
     <div class="vol-item">
       <div class="vol-label">Overall Risk</div>
       <div style="margin-top:8px">
-        <span class="rag-pill red"><span class="dot"></span>Elevated — NK event</span>
+        <span class="rag-pill red"><span class="dot"></span>Red — May Final</span>
       </div>
+      <div style="font-size:11px;color:#9ca3af;margin-top:6px">3 Reds — event-driven (NK)</div>
     </div>
   </div>
 
   <!-- Risk Register Table -->
   <div class="section">
-    <div class="section-title">Risk Register Feed</div>
+    <div class="section-title">Risk Register Feed — May 2026 Final</div>
     <table class="risk-table">
       <thead>
         <tr>
           <th style="width:190px">Risk Category</th>
           <th style="width:90px">RAG</th>
-          <th style="width:150px">Current / Prior</th>
+          <th style="width:165px">May / April</th>
           <th>Signal</th>
           <th style="width:210px">Mitigation</th>
         </tr>
@@ -155,11 +172,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
           <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
           <td>
             <div class="num-curr">0</div>
-            <div class="num-prior">April: 0</div>
-            <div class="num-delta delta-flat">→ No change</div>
+            <div class="num-prior">Apr: 0</div>
+            <div class="num-delta delta-flat">→ Held at zero</div>
           </td>
-          <td class="signal-text">No regulatory body complaints in May. No ACCC, BBB, BCA or ATIA contact recorded. Target is zero per month. Maintained.</td>
-          <td class="mitigation">All regulatory complaints escalate to Critical immediately. Escalation team owns resolution within 24hrs.</td>
+          <td class="signal-text">Zero regulatory body complaints in May 2026. No ACCC, BBB, BCA, or ATIA submissions. Regulatory complaint rate held at zero despite a significantly higher volume month driven by NK. The NK customer cohort has not escalated to regulatory channels — a positive signal that reduces legal exposure from the Spirit Airlines event.</td>
+          <td class="mitigation">All regulatory complaints escalate immediately to Critical. Escalation team owns resolution within 24hrs. Regulatory zero maintained through high-volume NK month — strong signal.</td>
         </tr>
 
         <!-- 2. Reputational -->
@@ -174,17 +191,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
               <div class="tp-market">
                 <div class="tp-market-label">AU</div>
                 <div class="tp-market-val">4.8</div>
-                <div class="tp-market-sub">4,289 reviews</div>
+                <div class="tp-market-sub">4,296 reviews · 3 Jun</div>
               </div>
               <div class="tp-market">
                 <div class="tp-market-label">US</div>
                 <div class="tp-market-val">4.7</div>
-                <div class="tp-market-sub">6,050 reviews</div>
+                <div class="tp-market-sub">6,061 reviews · 3 Jun</div>
               </div>
             </div>
           </td>
-          <td class="signal-text">Public Trustpilot scores are holding at target: AU 4.8, US 4.7 — these are the all-time cumulative scores visible to customers and are not affected by individual week fluctuations. Weekly review quality (avg score of that week's new reviews only) was inconsistent in May: US had two Amber weeks (w/e 10 May avg 4.65, w/e 24 May avg 4.55); AU had two Amber weeks (w/e 17 May avg 4.64, w/e 24 May avg 4.74). No Red triggers — no two consecutive weeks 0.2 below target in either market. Both markets closed May with strong weekly averages (AU 4.91, US 4.74, w/e 31 May).</td>
-          <td class="mitigation">Escalation team contacts all negative reviewers within 24hrs. Weekly review quality tracked separately in the weekly ops view. NK-related negative reviews are a near-term risk to weekly quality scores. Public score targets: AU &gt;4.8, US &gt;4.7.</td>
+          <td class="signal-text">Public Trustpilot scores at target (AU 4.8, US 4.7 as of 3 Jun 2026). Weekly review quality in May: AU — May 4–10: 4.97 ✓, May 11–17: 4.64 ✗, May 18–24: 4.74 ✗, May 25–31: 4.91 ✓ (2 consecutive below-target weeks; no Red trigger — neither below 4.6). US — May 4–10: 4.65 ✗, May 11–17: 4.82 ✓, May 18–24: 4.55 ✗, May 25–31: 4.74 ✓ (2 non-consecutive below-target weeks; no Red trigger — not consecutive, neither below 4.5). Mid-May dip correlates with peak NK complaint period. June should return to clean baseline as NK customers exit the review cycle. Amber held.</td>
+          <td class="mitigation">Escalation team contacts all negative reviewers within 24hrs. Red trigger: AU 2 consecutive weeks &lt;4.6; US 2 consecutive weeks &lt;4.5. Weekly review quality from Notion PLT Trust Insights. Public scores fetched via Chrome on monthly run.</td>
         </tr>
 
         <!-- 3. Policy & Product -->
@@ -196,11 +213,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
           <td><span class="rag-pill red"><span class="dot"></span>Red</span></td>
           <td>
             <div class="num-curr">101</div>
-            <div class="num-prior">April actual: 69</div>
-            <div class="num-delta delta-up">↑ +46%</div>
+            <div class="num-prior">Apr: 69</div>
+            <div class="num-delta delta-up">↑ +46.4%</div>
           </td>
-          <td class="signal-text">101 Policy/Product escalations in May vs 69 in April (+46% — Red threshold is &gt;25%). NK Service Disruption cases are a material driver, but the underlying trend was already upward: Dec 49 → Jan 55 → Feb 50 → Mar 58 → Apr 69 before NK hit. Policy complaint growth predates the event. Primary drivers: non-refundable cancellations, change cost disputes, fare condition disagreements.</td>
-          <td class="mitigation">Alex (FAR) and Dylan (CCM) as domain leads. Monthly policy complaint review with theme breakdown. Amber trigger: &gt;10% above prior. Red: &gt;25% above prior. Baseline reset recommended once NK cohort clears.</td>
+          <td class="signal-text">101 Policy &amp; Product complaints in May vs 69 in April (+46.4% — Red). NK cluster contributes est. ~32; standard basket: ~69 — flat vs April. Red reading is event-driven. Underlying trend (Dec 47 → Jan 55 → Feb 50 → Mar 58 → Apr 69) reflects structural growth alongside booking volume, but appeared to plateau once NK is excluded. Dominant drivers: cancellation fee disputes, fare condition disagreements, payment extension refusals. June comparison uses NK-excluded May standard (~69) as clean baseline.</td>
+          <td class="mitigation">Alex (FAR) and Dylan (CCM) as domain leads. Monthly theme breakdown review. June Amber trigger: &gt;10% above ~69 (i.e., &gt;76). Red: &gt;25% above ~69 (i.e., &gt;86). NK tail monitored in cluster section.</td>
         </tr>
 
         <!-- 4. Service Errors -->
@@ -212,27 +229,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
           <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
           <td>
             <div class="num-curr">16</div>
-            <div class="num-prior">April actual: 20</div>
+            <div class="num-prior">Apr: 20</div>
             <div class="num-delta delta-down">↓ −20%</div>
           </td>
-          <td class="signal-text">16 confirmed service errors in May vs 20 in April (−20%). Positive trend continuing: Dec 25 → Jan 24 → Feb 18 → Mar 30 (spike) → Apr 20 → May 16. The March spike (+67% vs Feb) was a one-month anomaly; May represents the lowest service error count in the 6-month window. No systemic deterioration signal.</td>
-          <td class="mitigation">Service failures surfaced weekly to ops leads. Monthly RCA pattern review. Amber trigger: &gt;10% above prior month. Red: &gt;25%. Dylan (CCM) and Alex (FAR) monitor team-level quality.</td>
+          <td class="signal-text">16 service errors in May — down 20% from April's 20, and the lowest count in the 6-month window (Dec 24 → Jan 27 → Feb 18 → Mar 30 → Apr 20 → May 16). Quality improvement held under significantly higher-volume conditions. Reflects ongoing quality work in CCM and FAR teams. Positive signal: service handling improved despite NK pressure. Jun comparison baseline: 16 (May final).</td>
+          <td class="mitigation">Service failures surfaced weekly to ops leads. Monthly RCA review. June Amber trigger: &gt;10% above 16 (i.e., &gt;17). Red: &gt;25% above 16 (i.e., &gt;20). Dylan (CCM) and Alex (FAR) monitor team-level quality.</td>
         </tr>
 
         <!-- 5. Dispute Risk -->
         <tr>
           <td>
             <div class="cat-name">Dispute / Chargeback Risk</div>
-            <div class="cat-measure">Indication of Possible Dispute = Yes (all escalations)</div>
+            <div class="cat-measure">Indication of Possible Dispute = Yes</div>
           </td>
           <td><span class="rag-pill red"><span class="dot"></span>Red</span></td>
           <td>
             <div class="num-curr">105</div>
-            <div class="num-prior">April actual: 52</div>
-            <div class="num-delta delta-up">↑ +102%</div>
+            <div class="num-prior">Apr: 52</div>
+            <div class="num-delta delta-up">↑ +101.9%</div>
           </td>
-          <td class="signal-text">105 dispute-flagged escalations in May vs 52 in April (+102% — Red). NK Spirit Airlines cases are the primary driver — affected US bookings have high chargeback exposure as refunds age. Excluding NK, standard dispute risk was tracking normally (Apr 52 vs prior range of 33–59). The Stripe dispute rate increase (0.63% → 0.72%) reported in May is consistent with NK-driven chargebacks. Georg (Fintech) tracking separately.</td>
-          <td class="mitigation">Dispute-flagged cases escalated to Georg (Fintech) immediately. NK chargeback exposure tracked via Stripe dispute rate dashboard. Standard rate expected to normalise once NK cohort resolves. Amber trigger: &gt;10% above prior. Red: &gt;25%.</td>
+          <td class="signal-text">105 dispute-flagged escalations in May vs 52 in April (+101.9% — Red). NK cluster accounts for est. ~53 (Spirit Airlines chargebacks); standard basket: ~52 — flat vs April. Red reading is fully event-driven. Stripe dispute rate rose 0.63% → 0.72% in May, attributed to NK chargeback volume. Georg (Fintech) tracking NK resolution separately. June comparison baseline = 52 (NK-excluded May standard) to avoid distortion from the NK spike.</td>
+          <td class="mitigation">All dispute-flagged cases escalated to Georg (Fintech) immediately. June comparison baseline = 52. June Amber trigger: &gt;10% above 52 (i.e., &gt;57). Red: &gt;25% above 52 (i.e., &gt;65). Stripe dispute rate tracked by Georg separately from NK cohort.</td>
         </tr>
 
       </tbody>
@@ -246,19 +263,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
       <div class="cluster-header">
         <div>
           <div class="cluster-title">✈️ Spirit Airlines (NK) Liquidation — US Market</div>
-          <div style="font-size:12px;color:#9ca3af;margin-top:2px">External event · Driving both Red signals this month · Georg / Fintech owns chargeback response</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:2px">May 2026 event · No new NK cases Jun 1–3 · Georg / Fintech owns chargeback resolution</div>
         </div>
-        <span class="cluster-badge">Active · May 2026</span>
+        <span class="cluster-badge">Monitoring · May cohort resolving</span>
       </div>
       <div class="cluster-grid">
-        <div class="cluster-stat"><div class="cs-val warn">+32</div><div class="cs-lbl">Est. NK contribution to Policy &amp; Product</div></div>
-        <div class="cluster-stat"><div class="cs-val red">+53</div><div class="cs-lbl">Est. NK contribution to Dispute Risk</div></div>
-        <div class="cluster-stat"><div class="cs-val">US</div><div class="cs-lbl">Market (all cases)</div></div>
-        <div class="cluster-stat"><div class="cs-val red">Active</div><div class="cs-lbl">Resolution status</div></div>
+        <div class="cluster-stat"><div class="cs-val warn">~32</div><div class="cs-lbl">Est. NK Policy &amp; Product (May)</div></div>
+        <div class="cluster-stat"><div class="cs-val warn">~53</div><div class="cs-lbl">Est. NK Dispute Risk (May)</div></div>
+        <div class="cluster-stat"><div class="cs-val" style="color:#16a34a">0</div><div class="cs-lbl">New NK cases Jun 1–3</div></div>
+        <div class="cluster-stat"><div class="cs-val muted">Winding down</div><div class="cs-lbl">Chargeback resolution status</div></div>
       </div>
       <div class="cluster-desc">
-        Spirit Airlines ceased operations May 2026. Cases primarily: refund requests, fare condition disputes, and chargeback threats on non-refundable fares. As open refunds age, chargeback exposure is expected to grow through Q3 before resolving. Once the NK cohort clears, Policy &amp; Product and Dispute Risk baselines should revert toward April levels.<br><br>
-        <strong>Stripe connection:</strong> The move from 0.63% (April) to 0.72% dispute rate (reported May company call) is driven by this cluster. Georg tracking separately via Stripe dispute rate dashboard.
+        Spirit Airlines ceased operations May 2026. Est. ~85 NK-related escalations in May — ~32 Policy &amp; Product (cancellation fee disputes, refund refusals) and ~53 Dispute / Chargeback Risk (credit card chargebacks in progress). The NK cluster fully accounts for all three Red category readings in May; excluding NK, May was approximately flat vs April across all complaint categories. Georg/Fintech tracking open refunds and chargeback claims via Stripe. No new NK cases detected June MTD (27 records, Jun 1–3). Mark as Resolved once NK submissions reach zero for two consecutive weeks.<br><br>
+        <strong>Stripe impact:</strong> Dispute rate rose from 0.63% → 0.72% in May — attributed to NK chargeback volume. Georg tracking June dispute rate independently of NK cohort. Standard June dispute rate expected to normalise as NK backlog clears.
       </div>
     </div>
   </div>
@@ -266,13 +283,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
   <!-- Charts -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px">
     <div style="background:white;border-radius:8px;border:1px solid #e5e7eb;padding:18px 20px">
-      <div style="font-weight:600;font-size:14px;margin-bottom:4px">May vs April — Key Categories</div>
-      <div style="font-size:11px;color:#9ca3af;margin-bottom:14px">Absolute counts. Red bars = Red RAG signal this month.</div>
+      <div style="font-weight:600;font-size:14px;margin-bottom:4px">May 2026 vs April 2026</div>
+      <div style="font-size:11px;color:#9ca3af;margin-bottom:14px">Final monthly comparison. Red bar = Red RAG, Green bar = Green RAG. NK cluster included in May totals.</div>
       <canvas id="compChart" height="200"></canvas>
     </div>
     <div style="background:white;border-radius:8px;border:1px solid #e5e7eb;padding:18px 20px">
-      <div style="font-weight:600;font-size:14px;margin-bottom:4px">6-Month Trend — All Categories</div>
-      <div style="font-size:11px;color:#9ca3af;margin-bottom:14px">Dec 2025 – May 2026. Policy &amp; Product and Dispute Risk trending up.</div>
+      <div style="font-weight:600;font-size:14px;margin-bottom:4px">6-Month Trend — Dec 2025 to May 2026</div>
+      <div style="font-size:11px;color:#9ca3af;margin-bottom:14px">All figures final. NK cluster included in May totals.</div>
       <canvas id="trendChart" height="200"></canvas>
     </div>
   </div>
@@ -286,16 +303,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         <span class="rag-key"><span class="rag-key-dot" style="background:#d97706"></span><strong>Amber</strong> = 10–25% above prior</span>
         <span class="rag-key"><span class="rag-key-dot" style="background:#dc2626"></span><strong>Red</strong> = &gt;25% above prior</span>
       </div>
-      <strong>Comparison method:</strong> Current month actual vs prior month actual. Weekly task runs each Monday — current month shown as projected until month closes.<br>
-      <strong>Overall RAG:</strong> Green = all Green. Amber = any Amber or 1 Red. Red = 2+ Reds or 3+ Ambers.<br><br>
+      <strong>Comparison method:</strong> Final months compared directly (no projection). Monthly run on 5th of each month using prior month final data.<br>
+      <strong>Overall RAG:</strong> Green = all Green. Amber = any Amber or 1 Red. Red = 2+ Reds or 3+ Ambers. <em>May 2026 = Red (3 Reds: Total Escalations, Dispute Risk, Policy &amp; Product — all event-driven by NK/Spirit cluster).</em><br><br>
+      <strong>June 2026 comparison baselines</strong> (NK-excluded May standards to avoid NK distortion):<br>
+      · Total Escalations: ~164 &nbsp;·&nbsp; Dispute Risk: 52 &nbsp;·&nbsp; Policy &amp; Product: ~69 &nbsp;·&nbsp; Service Errors: 16<br><br>
       <strong>Category definitions:</strong><br>
-      · <strong>Regulatory &amp; Legal:</strong> Source = BBB, BCA, ACCC, ATIA. Absolute count. Green = 0, Amber = 1+.<br>
-      · <strong>Reputational:</strong> Two signals tracked separately. (1) <em>Public Trustpilot score</em> — the all-time cumulative rating visible to customers; target AU &gt;4.8, US &gt;4.7; Red if 0.2 below target. (2) <em>Weekly review quality</em> — avg score of new reviews received that week only; does not affect the public score but is an early operational signal; Amber = any week below target in past 4 weeks, Red = 2 consecutive weeks 0.2 below target. The monthly risk register shows public score as the primary signal; weekly review quality detail lives in the weekly ops view.<br>
-      · <strong>Policy &amp; Product:</strong> Complaint Theme = "Policy Issue - NEW" or "Product Issue - NEW". Absolute count vs prior month. All cases included — discrete events flagged in commentary.<br>
-      · <strong>Service Errors:</strong> Service Handling is not "Properly Handled", not "NA", and not blank — must have an explicit failure reason. Absolute count vs prior month.<br>
-      · <strong>Dispute / Chargeback Risk:</strong> Indication of Possible Dispute = Yes. Absolute count vs prior month. All cases included — NK contribution flagged separately.<br>
-      · <strong>Discrete events:</strong> External events (airline insolvency etc.) included in totals but flagged in commentary. Excluded from baseline reset — recommend setting new baseline once cohort resolves.<br><br>
-      <strong>Data sources:</strong> Ops Leadership Dashboard (Notion) — charts read via Claude in Chrome. Trustpilot KPI Reporting DB (weekly avg) + public Trustpilot pages (current standing). Auto-refreshes weekly (Monday 8am) via Claude Cowork scheduled task.
+      · <strong>Regulatory &amp; Legal:</strong> Source = BBB, BCA, ACCC, ATIA. Absolute count. Green = 0, Amber = 1+, Red = 2+.<br>
+      · <strong>Reputational:</strong> Two signals. (1) <em>Public Trustpilot score</em> — all-time cumulative rating; target AU &gt;4.8, US &gt;4.7. (2) <em>Weekly review quality</em> — avg score of new reviews received that week; Amber = any week below target in past 4 weeks, Red = 2 consecutive weeks 0.2 below target (AU &lt;4.6, US &lt;4.5). Public scores fetched via Chrome on monthly run.<br>
+      · <strong>Policy &amp; Product:</strong> Complaint Theme = "Policy Issue - NEW" or "Product Issue - NEW". Absolute count vs NK-excluded prior month standard. NK cases flagged in cluster section.<br>
+      · <strong>Service Errors:</strong> Service Handling is not "Properly Handled", not "NA", not blank — must have explicit failure reason. Absolute count vs prior month actual.<br>
+      · <strong>Dispute / Chargeback Risk:</strong> Indication of Possible Dispute = Yes. Absolute count vs NK-excluded prior month standard. NK cases tracked separately in cluster section.<br>
+      · <strong>Discrete events:</strong> External events (airline insolvency etc.) flagged in cluster section. NK cases excluded from standard baselines for RAG comparison purposes.<br><br>
+      <strong>Data sources:</strong> Notion Ops Leadership Dashboard (Escalated Customer Complaints DB) — monthly chart views. Trustpilot public scores via Chrome session. Weekly star ratings from Notion PLT Trust Insights. Auto-refreshes monthly (5th of month) via Claude Cowork.
     </div>
   </div>
 
@@ -309,8 +328,8 @@ if (compCtx) {
     data: {
       labels: ['Policy &\nProduct', 'Service\nErrors', 'Dispute\nRisk', 'Total\nEscalations'],
       datasets: [
-        { label: 'April actual', data: [69, 20, 52, 160], backgroundColor: '#e5e7eb', borderRadius: 4, borderSkipped: false },
-        { label: 'May actual', data: [101, 16, 105, 249], backgroundColor: ['#dc2626','#16a34a','#dc2626','#f97316'], borderRadius: 4, borderSkipped: false }
+        { label: 'April 2026', data: [69, 20, 52, 160], backgroundColor: '#e5e7eb', borderRadius: 4, borderSkipped: false },
+        { label: 'May 2026 (Final)', data: [101, 16, 105, 249], backgroundColor: ['#fca5a5', '#86efac', '#fca5a5', '#fca5a5'], borderRadius: 4, borderSkipped: false }
       ]
     },
     options: {
@@ -334,15 +353,38 @@ if (trendCtx) {
     data: {
       labels: ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
       datasets: [
-        { label: 'Policy & Product', data: [49, 55, 50, 58, 69, 101], borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,0.05)', tension: 0.3, pointRadius: 3, borderWidth: 2 },
-        { label: 'Dispute Risk', data: [49, 59, 33, 49, 52, 105], borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.05)', tension: 0.3, pointRadius: 3, borderWidth: 2 },
-        { label: 'Service Errors', data: [25, 24, 18, 30, 20, 16], borderColor: '#16a34a', backgroundColor: 'rgba(22,163,74,0.05)', tension: 0.3, pointRadius: 3, borderWidth: 2 }
+        {
+          label: 'Policy & Product',
+          data: [47, 55, 50, 58, 69, 101],
+          borderColor: '#dc2626',
+          backgroundColor: 'rgba(220,38,38,0.05)',
+          tension: 0.3, pointRadius: 3, borderWidth: 2
+        },
+        {
+          label: 'Dispute Risk',
+          data: [41, 59, 33, 49, 52, 105],
+          borderColor: '#f97316',
+          backgroundColor: 'rgba(249,115,22,0.05)',
+          tension: 0.3, pointRadius: 3, borderWidth: 2
+        },
+        {
+          label: 'Service Errors',
+          data: [24, 27, 18, 30, 20, 16],
+          borderColor: '#16a34a',
+          backgroundColor: 'rgba(22,163,74,0.05)',
+          tension: 0.3, pointRadius: 3, borderWidth: 2
+        }
       ]
     },
     options: {
       responsive: true,
       plugins: {
-        legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, color: '#6b7280', boxWidth: 10, padding: 10 } }
+        legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, color: '#6b7280', boxWidth: 10, padding: 10 } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y
+          }
+        }
       },
       scales: {
         y: { beginAtZero: true, grid: { color: '#f3f4f6' }, ticks: { stepSize: 20, color: '#9ca3af', font: { size: 11 } } },
