@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complaints Risk Signal — Weekly</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: #f3f4f6; color: #111827; font-size: 14px; line-height: 1.5; }
+.header { background: white; border-bottom: 1px solid #e5e7eb; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; }
+.header-left { display: flex; align-items: center; gap: 12px; }
+.brand-dot { width: 10px; height: 10px; background: #f97316; border-radius: 50%; flex-shrink: 0; }
+.header h1 { font-size: 17px; font-weight: 700; }
+.header-sub { font-size: 12px; color: #9ca3af; margin-top: 1px; }
+.header-right { display: flex; align-items: center; gap: 10px; }
+.week-badge { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 20px; padding: 4px 14px; font-weight: 600; font-size: 13px; color: #374151; }
+.data-freshness { font-size: 11px; color: #9ca3af; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 3px 10px; }
+.content { padding: 20px 28px; max-width: 1100px; margin: 0 auto; }
+.section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9ca3af; margin-bottom: 10px; }
+
+/* Overall RAG banner */
+.overall-banner { border-radius: 8px; padding: 14px 20px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; }
+.overall-banner.red { background: #fee2e2; border: 1px solid #fca5a5; }
+.overall-banner.amber { background: #fef3c7; border: 1px solid #fcd34d; }
+.overall-banner.green { background: #dcfce7; border: 1px solid #86efac; }
+.overall-label { font-size: 13px; font-weight: 600; }
+.overall-banner.red .overall-label { color: #b91c1c; }
+.overall-banner.amber .overall-label { color: #92400e; }
+.overall-banner.green .overall-label { color: #166534; }
+.overall-note { font-size: 12px; opacity: 0.8; }
+
+/* Event flag */
+.event-note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #c2410c; margin-bottom: 16px; display: flex; gap: 8px; }
+
+/* Risk table */
+.risk-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; margin-bottom: 20px; }
+.risk-table th { background: #f9fafb; text-align: left; padding: 9px 14px; font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #e5e7eb; }
+.risk-table td { padding: 12px 14px; border-bottom: 1px solid #f3f4f6; vertical-align: top; font-size: 13px; color: #374151; }
+.risk-table tr:last-child td { border-bottom: none; }
+.cat-name { font-weight: 600; color: #111827; font-size: 13px; }
+.cat-measure { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.rag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.rag-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.rag-pill.green { background: #dcfce7; color: #166534; }
+.rag-pill.green .dot { background: #16a34a; }
+.rag-pill.amber { background: #fef3c7; color: #92400e; }
+.rag-pill.amber .dot { background: #d97706; }
+.rag-pill.red { background: #fee2e2; color: #b91c1c; }
+.rag-pill.red .dot { background: #dc2626; animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(220,38,38,0.4); } 50% { box-shadow: 0 0 0 4px rgba(220,38,38,0); } }
+.num-curr { font-size: 18px; font-weight: 700; color: #111827; }
+.num-detail { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.num-delta { font-size: 12px; font-weight: 600; margin-top: 2px; }
+.delta-up { color: #dc2626; }
+.delta-down { color: #16a34a; }
+.delta-flat { color: #9ca3af; }
+.signal-text { font-size: 12px; color: #6b7280; line-height: 1.5; max-width: 320px; }
+
+/* Trustpilot section */
+.tp-section { background: white; border-radius: 8px; border: 1px solid #e5e7eb; padding: 18px 20px; margin-bottom: 20px; }
+.tp-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+.tp-header-left { font-size: 14px; font-weight: 600; }
+.tp-header-note { font-size: 11px; color: #9ca3af; }
+.tp-scores { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+.tp-score-card { background: #f9fafb; border-radius: 8px; padding: 14px 16px; border: 1px solid #e5e7eb; }
+.tp-score-market { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #9ca3af; margin-bottom: 4px; }
+.tp-score-val { font-size: 32px; font-weight: 700; color: #111827; line-height: 1; }
+.tp-score-target { font-size: 12px; margin-top: 4px; }
+.tp-score-reviews { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.tp-score-target.on-target { color: #16a34a; font-weight: 600; }
+.tp-score-target.below-target { color: #d97706; font-weight: 600; }
+.tp-score-target.well-below { color: #dc2626; font-weight: 600; }
+.tp-divider { border: none; border-top: 1px solid #e5e7eb; margin: 0 0 14px; }
+.tp-weekly-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #9ca3af; margin-bottom: 10px; }
+.tp-weekly-note { font-size: 11px; color: #9ca3af; margin-bottom: 10px; font-style: italic; }
+.tp-weekly-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.tp-weekly-table th { text-align: left; padding: 5px 8px; color: #9ca3af; font-weight: 600; font-size: 11px; border-bottom: 1px solid #e5e7eb; }
+.tp-weekly-table td { padding: 7px 8px; border-bottom: 1px solid #f9fafb; }
+.tp-weekly-table tr:last-child td { border-bottom: none; }
+.week-label { color: #374151; font-weight: 500; }
+.tp-val { font-weight: 600; color: #111827; }
+.tp-val.amber { color: #d97706; }
+.tp-val.red { color: #dc2626; }
+.tp-val.green { color: #16a34a; }
+.week-rag { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.week-rag.green { background: #16a34a; }
+.week-rag.amber { background: #d97706; }
+.week-rag.red { background: #dc2626; }
+
+/* Threshold box */
+.threshold-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 18px; font-size: 12px; color: #6b7280; line-height: 1.8; }
+.threshold-box strong { color: #374151; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="brand-dot"></div>
+    <div>
+      <h1>Complaints Risk Signal</h1>
+      <div class="header-sub">Slice Operations · For Risk Register &amp; Business Visibility · Yannick</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="week-badge">w/e 31 May 2026 · June MTD</span>
+    <span class="data-freshness">Refreshed 2 Jun 2026</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- Overall RAG -->
+  <div class="overall-banner red">
+    <div>
+      <div class="overall-label">🔴 Overall Risk — Elevated</div>
+      <div class="overall-note" style="color:#b91c1c">2 Red signals this period · Both driven by Spirit Airlines (NK) liquidation event</div>
+    </div>
+    <span class="rag-pill red"><span class="dot"></span>Red</span>
+  </div>
+
+  <div class="event-note">
+    <span>⚠</span>
+    <span><strong>NK event active.</strong> Spirit Airlines ceased operations May 2026. Driving elevated Policy &amp; Product and Dispute Risk counts across the US market. Georg (Fintech) tracking chargeback exposure separately via Stripe. Underlying non-NK trends are mixed — Policy &amp; Product was trending up before the event.</span>
+  </div>
+
+  <!-- Risk table -->
+  <div class="section-title">Risk Categories</div>
+  <table class="risk-table">
+    <thead>
+      <tr>
+        <th style="width:185px">Category</th>
+        <th style="width:85px">RAG</th>
+        <th style="width:140px">May / April</th>
+        <th>Signal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="cat-name">Regulatory &amp; Legal</div><div class="cat-measure">BBB, BCA, ACCC, ATIA</div></td>
+        <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
+        <td>
+          <div class="num-curr">0</div>
+          <div class="num-detail">April: 0</div>
+          <div class="num-delta delta-flat">→ No change</div>
+        </td>
+        <td class="signal-text">No regulatory complaints. Target: zero. Maintained.</td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Reputational</div><div class="cat-measure">Trustpilot public score — see detail below</div></td>
+        <td><span class="rag-pill amber"><span class="dot"></span>Amber</span></td>
+        <td>
+          <div style="font-size:13px;font-weight:600;color:#111827">AU 4.8 · US 4.7</div>
+          <div class="num-detail">Public scores at target</div>
+          <div class="num-delta" style="color:#d97706">Weekly quality: Amber</div>
+        </td>
+        <td class="signal-text">Public scores holding at target (see Trustpilot section below). Weekly review quality had Amber weeks in both markets during May — no Red triggers. Full detail in the Trustpilot panel.</td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Policy &amp; Product</div><div class="cat-measure">Theme: Policy Issue, Product Issue</div></td>
+        <td><span class="rag-pill red"><span class="dot"></span>Red</span></td>
+        <td>
+          <div class="num-curr">101</div>
+          <div class="num-detail">April actual: 69</div>
+          <div class="num-delta delta-up">↑ +46%</div>
+        </td>
+        <td class="signal-text">+46% vs April (Red threshold &gt;25%). NK is the primary driver this month, but the underlying trend was already rising before the event (Dec 49 → Apr 69). NK contribution estimated at ~32 of the 101.</td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Service Errors</div><div class="cat-measure">Service Handling: explicit failure value</div></td>
+        <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
+        <td>
+          <div class="num-curr">16</div>
+          <div class="num-detail">April actual: 20</div>
+          <div class="num-delta delta-down">↓ −20%</div>
+        </td>
+        <td class="signal-text">May is the lowest service error count in 6 months. Improving trend continuing. No deterioration signal.</td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Dispute / Chargeback Risk</div><div class="cat-measure">Indication of Possible Dispute = Yes</div></td>
+        <td><span class="rag-pill red"><span class="dot"></span>Red</span></td>
+        <td>
+          <div class="num-curr">105</div>
+          <div class="num-detail">April actual: 52</div>
+          <div class="num-delta delta-up">↑ +102%</div>
+        </td>
+        <td class="signal-text">+102% vs April (Red). NK Spirit Airlines cases are the primary driver — US refund backlog carries high chargeback exposure. Standard (non-NK) dispute volume was normal. Georg tracking via Stripe dispute rate dashboard.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Trustpilot Section -->
+  <div class="section-title">Trustpilot Standing</div>
+  <div class="tp-section">
+    <div class="tp-header">
+      <div class="tp-header-left">Public Trustpilot Score</div>
+      <div class="tp-header-note">All-time cumulative · visible to customers · not affected by individual week fluctuations</div>
+    </div>
+    <div class="tp-scores">
+      <div class="tp-score-card">
+        <div class="tp-score-market">AU — PayLater Travel Australia</div>
+        <div class="tp-score-val">4.8</div>
+        <div class="tp-score-target on-target">✓ At target (&gt;4.8)</div>
+        <div class="tp-score-reviews">4,289 reviews</div>
+      </div>
+      <div class="tp-score-card">
+        <div class="tp-score-market">US — Pay Later Travel</div>
+        <div class="tp-score-val">4.7</div>
+        <div class="tp-score-target on-target">✓ At target (&gt;4.7)</div>
+        <div class="tp-score-reviews">6,050 reviews</div>
+      </div>
+    </div>
+
+    <hr class="tp-divider">
+
+    <div class="tp-weekly-label">Weekly Review Quality — Last 4 Weeks</div>
+    <div class="tp-weekly-note">Average score of new reviews received that week only. Does not affect the public score above. Tracked as an early operational signal.</div>
+    <table class="tp-weekly-table">
+      <thead>
+        <tr>
+          <th>Week ending</th>
+          <th>AU avg</th>
+          <th>AU vs target</th>
+          <th>US avg</th>
+          <th>US vs target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week-label">10 May 2026</td>
+          <td><span class="week-rag green"></span><span class="tp-val green">4.97</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.17 above</td>
+          <td><span class="week-rag amber"></span><span class="tp-val amber">4.65</span></td>
+          <td style="color:#d97706;font-size:11px">−0.05 below</td>
+        </tr>
+        <tr>
+          <td class="week-label">17 May 2026</td>
+          <td><span class="week-rag amber"></span><span class="tp-val amber">4.64</span></td>
+          <td style="color:#d97706;font-size:11px">−0.16 below</td>
+          <td><span class="week-rag green"></span><span class="tp-val green">4.82</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.12 above</td>
+        </tr>
+        <tr>
+          <td class="week-label">24 May 2026</td>
+          <td><span class="week-rag amber"></span><span class="tp-val amber">4.74</span></td>
+          <td style="color:#d97706;font-size:11px">−0.06 below</td>
+          <td><span class="week-rag amber"></span><span class="tp-val amber">4.55</span></td>
+          <td style="color:#d97706;font-size:11px">−0.15 below</td>
+        </tr>
+        <tr style="background:#f9fafb">
+          <td class="week-label" style="font-weight:700">31 May 2026 ← latest</td>
+          <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.91</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.11 above</td>
+          <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.74</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.04 above</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:#9ca3af;margin-top:10px">Amber = that week's review avg below target. Red trigger = 2 consecutive weeks 0.2 below target (AU &lt;4.6, US &lt;4.5). No Red triggers active this period.</div>
+  </div>
+
+  <!-- RAG Framework -->
+  <div class="section-title">RAG Framework</div>
+  <div class="threshold-box">
+    <strong>Complaint categories:</strong> Green &lt;10% above prior month. Amber 10–25%. Red &gt;25%. Comparison: current month (projected MTD mid-month, actual at month-end) vs prior month actual.<br>
+    <strong>Reputational:</strong> Public score — Red if 0.2 below target (AU &lt;4.6, US &lt;4.5). Weekly review quality — Amber if any week below target; Red if 2 consecutive weeks 0.2 below target.<br>
+    <strong>Overall:</strong> Green = all Green. Amber = any Amber or 1 Red. Red = 2+ Reds or 3+ Ambers.<br><br>
+    <strong>Sources:</strong> Ops Leadership Dashboard (Notion) — read weekly via Claude in Chrome. Trustpilot: KPI Reporting DB (weekly avg) + public pages (au.trustpilot.com/review/paylatertravel.com.au and /paylatertravel.com).
+  </div>
+
+</div>
+</body>
+</html>
