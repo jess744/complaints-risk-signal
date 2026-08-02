@@ -105,25 +105,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
     </div>
   </div>
   <div class="header-right">
-    <span class="week-badge">w/e 26 Jul 2026 · July 2026 MTD</span>
-    <span class="data-freshness">Refreshed 27 Jul 2026</span>
+    <span class="week-badge">w/e 2 Aug 2026 · August 2026 MTD</span>
+    <span class="data-freshness">Refreshed 3 Aug 2026</span>
   </div>
 </div>
 
 <div class="content">
 
   <!-- Overall RAG -->
-  <div class="overall-banner green">
+  <div class="overall-banner amber">
     <div>
-      <div class="overall-label">🟢 Overall Risk — Green</div>
-      <div class="overall-note" style="color:#166534">All categories Green. <strong>All four complaint-volume categories</strong> are pacing sharply below June, with the descent accelerating: Total Escalations (−31%), Service Errors (−38%), Policy &amp; Product (−27%) and Dispute Risk (−12%) — the May→June→July decline is now a sustained, deepening trend. <strong>Regulatory &amp; Legal</strong> is clear — the prior week's regulator-CC'd complaint (Fair Trading NSW + BBB) has been closed; 0 open cases. <strong>Reputational</strong> is Green: public scores are above target (AU 4.8 / US 4.7) and weekly review quality is above target in both markets, with the latest week strong (AU 4.94 / US 4.79). No Red triggers anywhere. Based on 27 days July data, projected to full month.</div>
+      <div class="overall-label">🟡 Overall Risk — Amber (low-confidence · early-month artifact)</div>
+      <div class="overall-note" style="color:#92400e">One Amber, driven entirely by a projection artifact. Only <strong>3 days of August data</strong> exist (×10.3 projection factor), so all figures are directional only. <strong>Service Errors</strong> flips Amber purely because 2 errors in 3 days projects to ~21 vs July's 17 (+22%) — a single additional error swings the whole category, so this is noise, not deterioration. All other complaint-volume categories are pacing well below July on the same projection: Total Escalations (−52%), Policy &amp; Product (−46%), Dispute Risk (−29%). <strong>Reputational</strong> is Green — public scores at target (AU 4.8 / US 4.7) and weekly review quality at/above target in both markets across the trailing four weeks (latest AU 4.94 / US 4.74). <strong>Regulatory &amp; Legal</strong> clear at 0 open cases. Expect this Amber to resolve to Green as the August sample builds; nothing to action.</div>
     </div>
-    <span class="rag-pill green"><span class="dot"></span>Green</span>
+    <span class="rag-pill amber"><span class="dot"></span>Amber</span>
   </div>
 
   <div class="event-note">
     <span>ℹ</span>
-    <span><strong>No active cluster event — volume broadly easing.</strong> Every complaint-volume category is falling faster than last week (the May peak and early-June cancellation/dispute cluster are fully cleared). No new cluster driver surfaced this week. Last week's regulator escalation (Fair&nbsp;Trading&nbsp;NSW + BBB) has been confirmed closed and is off the register. Nothing outstanding to action this week.</span>
+    <span><strong>No active cluster event — the single Amber is an early-August sampling artifact, not a real signal.</strong> With only 3 days of the month elapsed, Service Errors (2 so far) projects above July on a ×10.3 factor; one more or fewer error changes the RAG entirely. Underlying July closed clean (Service Errors 17, Total Escalations 151, Dispute Risk 73, Policy &amp; Product 76 — all down on June). No new cluster driver, and no open regulator/BBB cases. Re-check next week once the August sample is meaningful.</span>
   </div>
 
   <!-- Risk table -->
@@ -133,7 +133,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
       <tr>
         <th style="width:185px">Category</th>
         <th style="width:85px">RAG</th>
-        <th style="width:160px">Jul MTD (proj) / Jun</th>
+        <th style="width:160px">Aug MTD (proj) / Jul</th>
         <th>Signal</th>
       </tr>
     </thead>
@@ -143,10 +143,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
           <div class="num-curr">0</div>
-          <div class="num-detail">Jun actual: 0</div>
-          <div class="num-delta delta-down">↓ Prior case closed</div>
+          <div class="num-detail">Jul actual: 0</div>
+          <div class="num-delta delta-flat">→ No open cases</div>
         </td>
-        <td class="signal-text">Green — 0 open cases. Last week's regulator escalation (Fair Trading NSW + BBB) has been confirmed closed. No new regulator-CC'd or BBB/BCA/ACCC/ATIA cases this week.</td>
+        <td class="signal-text">Green — 0 open cases. No regulator-CC'd or BBB/BCA/ACCC/ATIA cases this week. Register is clear.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Reputational</div><div class="cat-measure">Trustpilot public score — see detail below</div></td>
@@ -154,49 +154,49 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         <td>
           <div style="font-size:13px;font-weight:600;color:#111827">AU 4.8 · US 4.7</div>
           <div class="num-detail">Public scores at target</div>
-          <div class="num-delta delta-down">Weekly quality: strong</div>
+          <div class="num-delta delta-down">Weekly quality: solid</div>
         </td>
-        <td class="signal-text">Green — public scores are at/above target (AU 4.8, US 4.7) and weekly review quality has held at or above target in both markets across the trailing four weeks. The latest week (w/e 26 Jul) is comfortably above in both (AU 4.94, US 4.79), and AU has been above target every week. No Red triggers — both markets sit well clear of the 4.6/4.5 floors. No concerns.</td>
+        <td class="signal-text">Green — public scores are at/above target (AU 4.8, US 4.7) and weekly review quality has held at or above target in both markets across the trailing four weeks. AU has stayed comfortably above target every week (latest 4.94); US sits at/above the 4.7 target every week (latest 4.74). No Red triggers — both markets are well clear of the 4.6/4.5 floors. No concerns.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Policy &amp; Product</div><div class="cat-measure">Theme: Policy Issue, Product Issue</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
-          <div class="num-curr">69 MTD</div>
-          <div class="num-detail">Proj full month: ~79 · Jun actual: 108</div>
-          <div class="num-delta delta-down">↓ −27% projected</div>
+          <div class="num-curr">4 MTD</div>
+          <div class="num-detail">Proj full month: ~41 · Jul actual: 76</div>
+          <div class="num-delta delta-down">↓ −46% projected</div>
         </td>
-        <td class="signal-text">Green — July projecting ~79 vs June's 108 (−27%), well below prior month and steeper than last week's −24% pace. P&amp;P is firmly off its June peak and heading back toward the April/May band. No new novel driver surfaced this week. 27-day projection.</td>
+        <td class="signal-text">Green — 4 in the first 3 days of August projects to ~41 vs July's 76 (−46%), continuing the descent off the June peak (108). Direction is clearly positive, though the projection is directional only on a 3-day sample. No new novel driver surfaced.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Service Errors</div><div class="cat-measure">Service Handling: explicit failure value</div></td>
-        <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
+        <td><span class="rag-pill amber"><span class="dot"></span>Amber</span></td>
         <td>
-          <div class="num-curr">13 MTD</div>
-          <div class="num-detail">Proj full month: ~15 · Jun actual: 24</div>
-          <div class="num-delta delta-down">↓ −38% projected</div>
+          <div class="num-curr">2 MTD</div>
+          <div class="num-detail">Proj full month: ~21 · Jul actual: 17</div>
+          <div class="num-delta delta-up">↑ +22% projected</div>
         </td>
-        <td class="signal-text">Green — the strongest-improving category. June closed at 24; July's 13 MTD projects ~15 (−38%), below even the April/May band (20/17) and the best month since January. The two-week Red run from earlier July is well behind us. June's underlying driver has clearly eased. 27-day projection.</td>
+        <td class="signal-text">Amber — but a sampling artifact, not a real signal. 2 service errors in the first 3 days project to ~21 vs July's 17 (+22%) on a ×10.3 factor; a single additional or fewer error swings the category. July closed clean at 17 (down from June's 24). Treat as directional only — expected to resolve to Green as the August sample builds. Re-check next week.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Dispute / Chargeback Risk</div><div class="cat-measure">Indication of Possible Dispute = Yes</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
-          <div class="num-curr">64 MTD</div>
-          <div class="num-detail">Proj full month: ~73 · Jun actual: 83</div>
-          <div class="num-delta delta-down">↓ −12% projected</div>
+          <div class="num-curr">5 MTD</div>
+          <div class="num-detail">Proj full month: ~52 · Jul actual: 73</div>
+          <div class="num-delta delta-down">↓ −29% projected</div>
         </td>
-        <td class="signal-text">Green — July projecting ~73 dispute-risk escalations vs June's 83 (−12%), a wider gap than last week's −8% and continuing the steady decline from May's 102 peak. The early-summer cluster has fully worked through. Georg still tracking chargeback exposure separately via Stripe. 27-day projection.</td>
+        <td class="signal-text">Green — 5 in the first 3 days projects to ~52 dispute-risk escalations vs July's 73 (−29%), extending the steady decline from May's 102 peak. The early-summer cluster is fully worked through. Georg still tracking chargeback exposure separately via Stripe. 3-day projection, directional only.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Total Escalations</div><div class="cat-measure">All escalation themes combined</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
-          <div class="num-curr">132 MTD</div>
-          <div class="num-detail">Proj full month: ~152 · Jun actual: 221</div>
-          <div class="num-delta delta-down">↓ −31% projected</div>
+          <div class="num-curr">7 MTD</div>
+          <div class="num-detail">Proj full month: ~72 · Jul actual: 151</div>
+          <div class="num-delta delta-down">↓ −52% projected</div>
         </td>
-        <td class="signal-text">Total escalation volume projecting ~152 vs June's 221 (−31%) — a clear step down, comfortably within Green. The May peak (245) → June (221) → July (~152) trend is a sustained descent now sitting below the April baseline (160). Volume direction is strongly positive. 27-day projection.</td>
+        <td class="signal-text">Total escalation volume projecting ~72 vs July's 151 (−52%) — comfortably within Green. The May peak (245) → June (221) → July (151) descent has continued into August and now sits well below the April baseline (160). Volume direction is strongly positive. 3-day projection, directional only.</td>
       </tr>
     </tbody>
   </table>
@@ -213,20 +213,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         <div class="tp-score-market">AU — PayLater Travel Australia</div>
         <div class="tp-score-val">4.8</div>
         <div class="tp-score-target on-target">✓ At target (&gt;4.8)</div>
-        <div class="tp-score-reviews">4,583 reviews</div>
+        <div class="tp-score-reviews">4,614 reviews</div>
       </div>
       <div class="tp-score-card">
         <div class="tp-score-market">US — Pay Later Travel</div>
         <div class="tp-score-val">4.7</div>
         <div class="tp-score-target on-target">✓ At target (&gt;4.7)</div>
-        <div class="tp-score-reviews">6,540 reviews</div>
+        <div class="tp-score-reviews">6,602 reviews</div>
       </div>
     </div>
 
     <hr class="tp-divider">
 
     <div class="tp-weekly-label">Weekly Review Quality — Last 4 Weeks</div>
-    <div class="tp-weekly-note">Average score of new reviews received that week only. Does not affect the public score above. Tracked as an early operational signal. Last 4 completed weeks through w/e 26 Jul.</div>
+    <div class="tp-weekly-note">Average score of new reviews received that week only. Does not affect the public score above. Tracked as an early operational signal. Last 4 completed weeks through w/e 2 Aug.</div>
     <table class="tp-weekly-table">
       <thead>
         <tr>
@@ -238,13 +238,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="week-label">5 Jul 2026</td>
-          <td><span class="week-rag green"></span><span class="tp-val green">4.86</span></td>
-          <td style="color:#16a34a;font-size:11px">+0.06 above</td>
-          <td><span class="week-rag green"></span><span class="tp-val green">4.81</span></td>
-          <td style="color:#16a34a;font-size:11px">+0.11 above</td>
-        </tr>
         <tr>
           <td class="week-label">12 Jul 2026</td>
           <td><span class="week-rag green"></span><span class="tp-val green">4.89</span></td>
@@ -259,16 +252,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
           <td><span class="week-rag green"></span><span class="tp-val green">4.75</span></td>
           <td style="color:#16a34a;font-size:11px">+0.05 above</td>
         </tr>
+        <tr>
+          <td class="week-label">26 Jul 2026</td>
+          <td><span class="week-rag green"></span><span class="tp-val green">4.94</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.14 above</td>
+          <td><span class="week-rag green"></span><span class="tp-val green">4.79</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.09 above</td>
+        </tr>
         <tr style="background:#f9fafb">
-          <td class="week-label" style="font-weight:700">26 Jul 2026 ← latest</td>
+          <td class="week-label" style="font-weight:700">2 Aug 2026 ← latest</td>
           <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.94</span></td>
           <td style="color:#16a34a;font-size:11px">+0.14 above</td>
-          <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.79</span></td>
-          <td style="color:#16a34a;font-size:11px">+0.09 above</td>
+          <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.74</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.04 above</td>
         </tr>
       </tbody>
     </table>
-    <div style="font-size:11px;color:#9ca3af;margin-top:10px">Green = that week's review avg at or above target. Amber = below target. Red trigger = 2 consecutive weeks 0.2 below target (AU &lt;4.6, US &lt;4.5). All four weeks are at or above target in both markets — Reputational is Green. AU has been above target every week; the latest week is comfortably above in both (AU 4.94, US 4.79). No Red triggers active this period.</div>
+    <div style="font-size:11px;color:#9ca3af;margin-top:10px">Green = that week's review avg at or above target. Amber = below target. Red trigger = 2 consecutive weeks 0.2 below target (AU &lt;4.6, US &lt;4.5). All four weeks are at or above target in both markets — Reputational is Green. AU has been comfortably above target every week; US has held at or above the 4.7 target every week. Latest week AU 4.94, US 4.74. No Red triggers active this period.</div>
   </div>
 
   <!-- RAG Framework -->
