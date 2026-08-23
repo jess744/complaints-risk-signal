@@ -33,6 +33,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
 
 /* Event flag */
 .event-note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #c2410c; margin-bottom: 16px; display: flex; gap: 8px; }
+.data-gap { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #1d4ed8; margin-bottom: 16px; display: flex; gap: 8px; }
 
 /* Risk table */
 .risk-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; margin-bottom: 20px; }
@@ -57,6 +58,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
 .delta-down { color: #16a34a; }
 .delta-flat { color: #9ca3af; }
 .signal-text { font-size: 12px; color: #6b7280; line-height: 1.5; max-width: 320px; }
+tr.row-red td { background: #fffbfb; }
 
 /* Trustpilot section */
 .tp-section { background: white; border-radius: 8px; border: 1px solid #e5e7eb; padding: 18px 20px; margin-bottom: 20px; }
@@ -89,6 +91,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
 .week-rag.amber { background: #d97706; }
 .week-rag.red { background: #dc2626; }
 
+/* Driver box */
+.driver-box { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px; }
+.driver-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.driver-sub { font-size: 11px; color: #9ca3af; margin-bottom: 14px; }
+.driver-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.driver-table th { text-align: left; padding: 5px 8px; color: #9ca3af; font-weight: 600; font-size: 11px; border-bottom: 1px solid #e5e7eb; }
+.driver-table td { padding: 7px 8px; border-bottom: 1px solid #f9fafb; color: #374151; }
+.driver-table tr:last-child td { border-bottom: none; }
+.trend-up { color: #dc2626; font-weight: 600; }
+.trend-flat { color: #9ca3af; font-weight: 600; }
+
 /* Threshold box */
 .threshold-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 18px; font-size: 12px; color: #6b7280; line-height: 1.8; }
 .threshold-box strong { color: #374151; }
@@ -105,8 +118,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
     </div>
   </div>
   <div class="header-right">
-    <span class="week-badge">w/e 9 Aug 2026 · August 2026 MTD</span>
-    <span class="data-freshness">Refreshed 10 Aug 2026</span>
+    <span class="week-badge">w/e 23 Aug 2026 · August 2026 MTD</span>
+    <span class="data-freshness">Refreshed 24 Aug 2026</span>
   </div>
 </div>
 
@@ -115,15 +128,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
   <!-- Overall RAG -->
   <div class="overall-banner amber">
     <div>
-      <div class="overall-label">🟡 Overall Risk — Amber (single driver: US weekly review dip)</div>
-      <div class="overall-note" style="color:#92400e">One Amber this week, and it sits in <strong>Reputational</strong>, not complaint volume. US weekly review quality dropped to <strong>4.62</strong> in the latest week (w/e 9 Aug), below the 4.7 target and its first sub-target week in the trailing four (prior three: 4.75 / 4.79 / 4.74). Public scores are unchanged and at target (AU 4.8 / US 4.7), and AU weekly quality remains comfortably above target (latest 4.96). This is <strong>not</strong> a Red trigger — that needs two consecutive weeks 0.2 below target (US &lt;4.5). Every complaint-volume category is Green on a now-meaningful 9-day August sample, all pacing below July: Total Escalations (−32%), Dispute Risk (−29%), Policy &amp; Product (−8%), Service Errors (~flat). Regulatory &amp; Legal clear at 0 cases. Watch item: whether the US weekly dip holds next week.</div>
+      <div class="overall-label">🟡 Overall Risk — Amber (one Red: Service Errors. One Amber: US weekly review quality)</div>
+      <div class="overall-note" style="color:#92400e">One Red and one Amber holds Overall at Amber, but the composition has worsened since last week. <strong>Service Errors moves Amber → Red:</strong> 19 in the first 23 days projects to ~26 for the month vs July's 17 (+51%), through the 25% Red threshold. This is not a projection artefact — the MTD count of 19 has <em>already</em> passed July's full-month actual of 17 with 8 days still to run, so August finishes above July regardless of how the rest of the month lands. The domain split points squarely at <strong>Flights&nbsp;Servicing</strong>, which has climbed 0 → 3 → 3 → 4 → 6 over the last five weeks and accounts for roughly 16 of the 19 August cases. That is a five-week directional trend, not a spike. <strong>Reputational stays Amber</strong> on unchanged evidence — the KPI register has not published a weekly Trustpilot figure for w/e 23 Aug, so this rating still rests on the same two US misses (4.62, 4.66) reported last week. Everything else improved or held: Total Escalations projecting −7%, Dispute Risk −17%, Policy &amp; Product +2%, Regulatory &amp; Legal clear at 0. Priority this week: the Flights Servicing service-error trend, ahead of the reputational item.</div>
     </div>
     <span class="rag-pill amber"><span class="dot"></span>Amber</span>
   </div>
 
   <div class="event-note">
+    <span>⚠</span>
+    <span><strong>No cluster event — the Service Errors Red looks internal, not external.</strong> No airline insolvency, bulk refund or disruption event is visible. The two categories where a cluster event surfaces first are both Green and both falling: Policy &amp; Product +2% and Dispute Risk −17%. That pattern argues against an external shock and for a service-execution issue: errors are rising while the complaint themes that accompany a disruption event are flat. The rise is concentrated in <strong>Flights Servicing</strong> and is monotonic across five weeks, which is more consistent with a process, tooling or capacity cause than with a one-off incident. Recommend Alex reviews the 19 August cases at case level to establish whether they share a single root cause or are dispersed — that distinction determines whether this is a fix or a capacity problem. No open regulator / BBB / BCA / ACCC / ATIA cases.</span>
+  </div>
+
+  <div class="data-gap">
     <span>ℹ</span>
-    <span><strong>No active cluster event.</strong> The Amber is a single-week US reputational dip (weekly review avg 4.62 vs 4.74 the prior week), not a complaint-volume spike — all volume categories are down on July. No individual complaint driver behind the US dip is visible in the dashboard this week; the sample is small (one week), so treat as a watch item rather than a confirmed trend. If the US weekly avg stays below 4.7 next week — or falls below 4.5 for a second consecutive week — it escalates to Red. No open regulator / BBB / BCA / ACCC / ATIA cases.</span>
+    <span><strong>Data gap — no new weekly Trustpilot point this week.</strong> The KPI register's weekly star-rating series still ends at w/e 16 Aug, so the four weeks shown below are identical to last week's report. The Reputational Amber is therefore <em>carried forward</em>, not re-confirmed by fresh data. Treat it as an open item awaiting a data point rather than as a two-week-old trend that has been validated again. Worth a nudge to whoever owns the weekly KPI upload.</span>
   </div>
 
   <!-- Risk table -->
@@ -138,6 +156,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
       </tr>
     </thead>
     <tbody>
+      <tr class="row-red">
+        <td><div class="cat-name">Service Errors</div><div class="cat-measure">Service Handling: explicit failure value</div></td>
+        <td><span class="rag-pill red"><span class="dot"></span>Red</span></td>
+        <td>
+          <div class="num-curr">19 MTD</div>
+          <div class="num-detail">Proj full month: ~26 · Jul actual: 17</div>
+          <div class="num-delta delta-up">↑ +51% projected</div>
+        </td>
+        <td class="signal-text">Red — 19 service errors in 23 days project to ~26 vs July's 17 (+51%), past the 25% Red line. The conclusion does not depend on the projection: 19 MTD already exceeds July's full-month 17 with 8 days left, so August finishes higher on actuals alone. Nine of the 19 landed in the last 7 days, a step up from the prior fortnight's pace. By domain, <strong>Flights Servicing</strong> drives it — 0 → 3 → 3 → 4 → 6 across the last five weeks, ~16 of the 19 August cases — with FAR contributing 2 and Fintech negligible. August will also exceed June's 24, making it the worst month since March (30). Escalate to Alex: a five-week monotonic rise in one domain is a process signal, and the quality framework that went live 1 July is the natural place to land it. Caveat: absolute counts are small, so week-to-week noise is real — but the direction has now held for five consecutive weeks, which noise does not usually do.</td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Reputational</div><div class="cat-measure">Trustpilot public score + weekly quality — see detail below</div></td>
+        <td><span class="rag-pill amber"><span class="dot"></span>Amber</span></td>
+        <td>
+          <div style="font-size:13px;font-weight:600;color:#111827">AU 4.8 · US 4.7</div>
+          <div class="num-detail">Public scores at target</div>
+          <div class="num-delta delta-flat">→ No new weekly data since w/e 16 Aug</div>
+        </td>
+        <td class="signal-text">Amber, carried forward. Public scores hold at target and both grew their review base this week (AU 4.8 on 4,705 reviews, up from 4,669; US 4.7 on 6,759, up from 6,710) — a rising denominator at an unchanged score means incoming sentiment is broadly in line with the existing book. The Amber rests on the two US weekly misses already reported: 4.62 (w/e 9 Aug) and 4.66 (w/e 16 Aug) against a 4.7 target. <strong>No new weekly figure has been published for w/e 23 Aug</strong>, so nothing has confirmed or cleared this. Red is not armed — that needs two consecutive weeks below 4.5, and both misses are shallow (−0.08, −0.04). AU is clean on all four weeks (4.94 / 4.94 / 4.96 / 4.85).</td>
+      </tr>
       <tr>
         <td><div class="cat-name">Regulatory &amp; Legal</div><div class="cat-measure">BBB, BCA, ACCC, ATIA</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
@@ -146,60 +184,65 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
           <div class="num-detail">Jul actual: 0</div>
           <div class="num-delta delta-flat">→ No open cases</div>
         </td>
-        <td class="signal-text">Green — 0 open cases. No regulator-CC'd or BBB/BCA/ACCC/ATIA cases this week. Register is clear.</td>
-      </tr>
-      <tr>
-        <td><div class="cat-name">Reputational</div><div class="cat-measure">Trustpilot public score + weekly quality — see detail below</div></td>
-        <td><span class="rag-pill amber"><span class="dot"></span>Amber</span></td>
-        <td>
-          <div style="font-size:13px;font-weight:600;color:#111827">AU 4.8 · US 4.7</div>
-          <div class="num-detail">Public scores at target</div>
-          <div class="num-delta delta-up">US weekly ↓ 4.62 (below target)</div>
-        </td>
-        <td class="signal-text">Amber — public scores hold at target (AU 4.8, US 4.7), but US <em>weekly</em> review quality slipped to 4.62 in w/e 9 Aug, below the 4.7 target and the first sub-target US week in the trailing four (4.75 → 4.79 → 4.74 → 4.62). AU stays well above target every week (latest 4.96). One week only and still above the 4.5 Red floor, so this is a watch item, not a Red. Re-check next week — a repeat or a fall below 4.5 escalates.</td>
+        <td class="signal-text">Green — 0 open cases. No regulator-CC'd or BBB/BCA/ACCC/ATIA matters this week. Register is clear and has been for the full period.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Policy &amp; Product</div><div class="cat-measure">Theme: Policy Issue, Product Issue</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
-          <div class="num-curr">20 MTD</div>
-          <div class="num-detail">Proj full month: ~69 · Jul actual: 75</div>
-          <div class="num-delta delta-down">↓ −8% projected</div>
+          <div class="num-curr">56 MTD</div>
+          <div class="num-detail">Proj full month: ~75 · Jul actual: 74</div>
+          <div class="num-delta delta-up">↑ +2% projected</div>
         </td>
-        <td class="signal-text">Green — 20 in the first 9 days projects to ~69 vs July's 75 (−8%), continuing the descent off the June peak (108) and now on a meaningful sample. Direction remains positive; no new novel driver surfaced.</td>
-      </tr>
-      <tr>
-        <td><div class="cat-name">Service Errors</div><div class="cat-measure">Service Handling: explicit failure value</div></td>
-        <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
-        <td>
-          <div class="num-curr">5 MTD</div>
-          <div class="num-detail">Proj full month: ~17 · Jul actual: 17</div>
-          <div class="num-delta delta-flat">→ ~flat vs July</div>
-        </td>
-        <td class="signal-text">Green — 5 service errors in the first 9 days project to ~17, level with July's 17 and below June's 24. Last week's early-month Amber (a 3-day sampling artifact) has resolved as expected now the sample has built. No concerns.</td>
+        <td class="signal-text">Green — 56 in 23 days projects to ~75 vs July's 74 (+2%), comfortably inside the Green band and tighter than last week's +5% read. With three-quarters of the month banked the projection is now stable. Well below the June peak of 108. Read as flat month-on-month, not rising. Notably, this staying flat while Service Errors climb is what rules out a cluster event as the cause of the Red.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Dispute / Chargeback Risk</div><div class="cat-measure">Indication of Possible Dispute = Yes</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
-          <div class="num-curr">15 MTD</div>
-          <div class="num-detail">Proj full month: ~52 · Jul actual: 73</div>
-          <div class="num-delta delta-down">↓ −29% projected</div>
+          <div class="num-curr">45 MTD</div>
+          <div class="num-detail">Proj full month: ~61 · Jul actual: 73</div>
+          <div class="num-delta delta-down">↓ −17% projected</div>
         </td>
-        <td class="signal-text">Green — 15 in the first 9 days projects to ~52 dispute-risk escalations vs July's 73 (−29%), extending the steady decline from May's 102 peak. The early-summer cluster is fully worked through. Georg still tracking chargeback exposure separately via Stripe.</td>
+        <td class="signal-text">Green — 45 in 23 days projects to ~61 dispute-risk escalations vs July's 73 (−17%), continuing the decline off the May peak (102 → 83 → 73 → ~61). The improvement is slightly shallower than last week's −23% implied, so the fall is decelerating rather than accelerating, but the direction is intact and the May–June cluster is worked through. Georg continues to track chargeback exposure separately via Stripe.</td>
       </tr>
       <tr>
         <td><div class="cat-name">Total Escalations</div><div class="cat-measure">All escalation themes combined</div></td>
         <td><span class="rag-pill green"><span class="dot"></span>Green</span></td>
         <td>
-          <div class="num-curr">30 MTD</div>
-          <div class="num-detail">Proj full month: ~103 · Jul actual: 151</div>
-          <div class="num-delta delta-down">↓ −32% projected</div>
+          <div class="num-curr">104 MTD</div>
+          <div class="num-detail">Proj full month: ~140 · Jul actual: 151</div>
+          <div class="num-delta delta-down">↓ −7% projected</div>
         </td>
-        <td class="signal-text">Total escalation volume projecting ~103 vs July's 151 (−32%) — comfortably within Green. The May peak (245) → June (221) → July (151) descent has continued into August and now sits below the April baseline (160). Volume direction is strongly positive.</td>
+        <td class="signal-text">Green — 104 in 23 days projects to ~140 vs July's 151 (−7%), holding last week's read almost exactly. The descent off the May peak continues (245 → 221 → 151 → ~140) and August sits below the April baseline of 160. Weekly shape within August: 24 → 42 → 33, so mid-month ran hot before easing. Total volume falling while Service Errors rise means the error <em>rate</em> per escalation is deteriorating faster than the headline count suggests — that is the more useful framing for Alex.</td>
       </tr>
     </tbody>
   </table>
+
+  <!-- Service Errors driver detail -->
+  <div class="section-title">Red Driver Detail</div>
+  <div class="driver-box">
+    <div class="driver-title">Service Errors by domain — weekly</div>
+    <div class="driver-sub">Source: Ops Leadership Dashboard, "# of Service Errors" → By Domain. Weeks are Open Date buckets.</div>
+    <table class="driver-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Flights Servicing (FS)</th>
+          <th>Flights Acq. &amp; Recovery (FAR)</th>
+          <th>Other / Fintech</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Jul 20 – 26</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>Jul 27 – Aug 2</td><td>3</td><td>0</td><td>1</td></tr>
+        <tr><td>Aug 3 – 9</td><td>3</td><td>0</td><td>0</td></tr>
+        <tr><td>Aug 10 – 16</td><td>4</td><td>1</td><td>1</td></tr>
+        <tr style="background:#fffbfb"><td style="font-weight:700">Aug 17 – 23 ← latest</td><td class="trend-up">6</td><td>2</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:#9ca3af;margin-top:10px">FS rises in four of the last five weeks with no reversal, and roughly doubles across the August weeks. FAR appears in the last two weeks at low volume, which may be the start of a second trend or may be noise — one more week will tell. The single most useful next step is a case-level read of the 19 August errors: if they share a root cause this is a fix; if they are dispersed across ticket types it is a capacity or capability issue, which is a different conversation and a different owner.</div>
+  </div>
 
   <!-- Trustpilot Section -->
   <div class="section-title">Trustpilot Standing</div>
@@ -213,20 +256,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         <div class="tp-score-market">AU — PayLater Travel Australia</div>
         <div class="tp-score-val">4.8</div>
         <div class="tp-score-target on-target">✓ At target (&gt;4.8)</div>
-        <div class="tp-score-reviews">4,637 reviews</div>
+        <div class="tp-score-reviews">4,705 reviews (+36 this week)</div>
       </div>
       <div class="tp-score-card">
         <div class="tp-score-market">US — Pay Later Travel</div>
         <div class="tp-score-val">4.7</div>
         <div class="tp-score-target on-target">✓ At target (&gt;4.7)</div>
-        <div class="tp-score-reviews">6,658 reviews</div>
+        <div class="tp-score-reviews">6,759 reviews (+49 this week)</div>
       </div>
     </div>
 
     <hr class="tp-divider">
 
-    <div class="tp-weekly-label">Weekly Review Quality — Last 4 Weeks</div>
-    <div class="tp-weekly-note">Average score of new reviews received that week only. Does not affect the public score above. Tracked as an early operational signal. Last 4 completed weeks through w/e 9 Aug.</div>
+    <div class="tp-weekly-label">Weekly Review Quality — Last 4 Published Weeks</div>
+    <div class="tp-weekly-note">Average score of new reviews received that week only. Does not affect the public score above. Tracked as an early operational signal. ⚠ Series still ends at w/e 16 Aug — no figure published for w/e 23 Aug, so these four weeks are unchanged from last week's report.</div>
     <table class="tp-weekly-table">
       <thead>
         <tr>
@@ -238,13 +281,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="week-label">19 Jul 2026</td>
-          <td><span class="week-rag green"></span><span class="tp-val green">4.84</span></td>
-          <td style="color:#16a34a;font-size:11px">+0.04 above</td>
-          <td><span class="week-rag green"></span><span class="tp-val green">4.75</span></td>
-          <td style="color:#16a34a;font-size:11px">+0.05 above</td>
-        </tr>
         <tr>
           <td class="week-label">26 Jul 2026</td>
           <td><span class="week-rag green"></span><span class="tp-val green">4.94</span></td>
@@ -260,23 +296,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
           <td style="color:#16a34a;font-size:11px">+0.04 above</td>
         </tr>
         <tr style="background:#fffbeb">
-          <td class="week-label" style="font-weight:700">9 Aug 2026 ← latest</td>
-          <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.96</span></td>
+          <td class="week-label">9 Aug 2026</td>
+          <td><span class="week-rag green"></span><span class="tp-val green">4.96</span></td>
           <td style="color:#16a34a;font-size:11px">+0.16 above</td>
-          <td><span class="week-rag amber"></span><span class="tp-val amber" style="font-weight:700">4.62</span></td>
+          <td><span class="week-rag amber"></span><span class="tp-val amber">4.62</span></td>
           <td style="color:#d97706;font-size:11px;font-weight:600">−0.08 below</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td class="week-label" style="font-weight:700">16 Aug 2026 ← latest published</td>
+          <td><span class="week-rag green"></span><span class="tp-val green" style="font-weight:700">4.85</span></td>
+          <td style="color:#16a34a;font-size:11px">+0.05 above</td>
+          <td><span class="week-rag amber"></span><span class="tp-val amber" style="font-weight:700">4.66</span></td>
+          <td style="color:#d97706;font-size:11px;font-weight:600">−0.04 below · 2nd consecutive</td>
+        </tr>
+        <tr style="background:#f9fafb">
+          <td class="week-label" style="color:#9ca3af">23 Aug 2026</td>
+          <td colspan="4" style="color:#9ca3af;font-size:11px;font-style:italic">Not yet published in the KPI register — no data point available at time of refresh.</td>
         </tr>
       </tbody>
     </table>
-    <div style="font-size:11px;color:#9ca3af;margin-top:10px">Green = that week's review avg at or above target. Amber = below target. Red trigger = 2 consecutive weeks 0.2 below target (AU &lt;4.6, US &lt;4.5). AU is above target all four weeks (latest 4.96). US held at/above the 4.7 target for three weeks then dipped to 4.62 in the latest week — one week below target, above the 4.5 Red floor, so Reputational is Amber (watch item). No Red trigger active this period.</div>
+    <div style="font-size:11px;color:#9ca3af;margin-top:10px">Green = that week's review avg at or above target. Amber = below target. Red trigger = 2 consecutive weeks 0.2 below target (AU &lt;4.6, US &lt;4.5). AU is above target all four published weeks. US has missed the 4.7 target twice in a row (4.62 then 4.66), which holds Reputational at Amber. The Red trigger is <em>not</em> armed — both misses are shallow and well clear of the 4.5 floor, and the week-on-week move was upward (4.62 → 4.66). The honest read is that this item is stalled rather than developing: with no w/e 23 Aug figure, there is no new information either way. Public scores meanwhile absorbed +85 combined new reviews without moving, which is mildly reassuring.</div>
   </div>
 
   <!-- RAG Framework -->
   <div class="section-title">RAG Framework</div>
   <div class="threshold-box">
-    <strong>Complaint categories:</strong> Green &lt;10% above prior month. Amber 10–25%. Red &gt;25%. Comparison: current month (projected from MTD ÷ days elapsed × days in month) vs prior month actual. August projection based on 9 days elapsed (×3.44 factor) — now a meaningful sample.<br>
+    <strong>Complaint categories:</strong> Green &lt;10% above prior month. Amber 10–25%. Red &gt;25%. Comparison: current month (projected from MTD ÷ days elapsed × days in month) vs prior month actual. August projection based on <strong>23 completed days (×1.35 factor)</strong> — three-quarters of the month banked, so projections are now stable and the Service Errors Red also holds on raw actuals without any projection.<br>
     <strong>Reputational:</strong> Green when public scores and weekly review quality are at or above target (AU &ge;4.8, US &ge;4.7). Public score — Red if 0.2 below target (AU &lt;4.6, US &lt;4.5). Weekly review quality — Amber if a week falls below target; Red if 2 consecutive weeks 0.2 below target.<br>
-    <strong>Overall:</strong> Green = all Green. Amber = any Amber or 1 Red. Red = 2+ Reds or 3+ Ambers.<br><br>
+    <strong>Overall:</strong> Green = all Green. Amber = any Amber or 1 Red. Red = 2+ Reds or 3+ Ambers. This week: 1 Red + 1 Amber = Amber. Note the framework treats one Red the same as one Amber — if the Service Errors trend continues into September the Overall rating will understate it, so read the composition, not just the banner.<br><br>
     <strong>Sources:</strong> Ops Leadership Dashboard (Notion) — read weekly via Claude in Chrome. Trustpilot: Notion weekly chart (AU and US tabs) + public pages (au.trustpilot.com/review/paylatertravel.com.au and /paylatertravel.com).
   </div>
 
